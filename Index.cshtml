@@ -1,0 +1,54 @@
+﻿@model IEnumerable<hashi_project.Models.Employee>
+@{
+    ViewBag.Title = "Employee List";
+    Layout = ViewBag.Layout; // Set the layout from ViewBag
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="col-md-3 div-left" style="position: fixed; left: 0; top: 50px; bottom: 0; width: 10%; z-index: 1; background-color: #fff;">
+    @await Component.InvokeAsync("LeftNavigation")
+</div>
+
+<div background-color: grey; width: 5px; margin: 0 auto;"></div>
+
+<div class="div-right" style="float: right; width: 90%;">
+    <div class="container mt-4">
+
+        <h1>Employee</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="background-color: #aaa;">ID</th>
+                    <th style="background-color: #aaa;">Name</th>
+                    <th style="background-color: #aaa;">Surname</th>
+                    <th style="background-color: #aaa;">Birth Date</th>
+                    <th style="background-color: #aaa;">Position</th>
+                    <th style="background-color: #aaa;">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employee in Model)
+                {
+                    <tr style="background-color: @((employee.Id % 2 == 0) ? "#ccc" : "#eee");">
+                        <td>@employee.Id</td>
+                        <td>@employee.Name @employee.Surname</td>
+                        <td>@employee.Surname</td>
+                        <td>@employee.BirthDate.ToString("MM/dd/yyyy")</td>
+                        <td>@employee.Position</td>
+                        <td>
+                            <item-link controller-name="Employee" action-name="Details" item-id="@Model.Id" display-text="Details"></item-link>
+
+                            <item-link controller-name="Employee" action-name="Edit" item-id="@Model.Id" display-text="Edit"></item-link>
+
+                            <item-link controller-name="Edit" action-name="Employee" item-id="@Model.Id" display-text="Update"></item-link>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

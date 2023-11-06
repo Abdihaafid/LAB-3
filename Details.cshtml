@@ -1,0 +1,41 @@
+﻿@model hashi_project.Models.Employee
+@{
+    ViewBag.Title = "Employee Details";
+    Layout = ViewBag.Layout; // Set the layout from ViewBag
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="col-md-3 div-left" style="position: fixed; left: 0; top: 50px; bottom: 0; width: 10%; z-index: 1; background-color: #fff;">
+    @await Component.InvokeAsync("LeftNavigation")
+</div>
+
+<div class="container" style="position: relative; left: 10%; width: 90%;">
+    <h2 class="mt-4"> Details</h2>
+    <h3 class="mt-4"> Employee</h3>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-3">
+            <dl>
+                <dt>Name:</dt>
+                <dd>@Model.Name</dd>
+                <dt>Surname:</dt>
+                <dd>@Model.Surname</dd>
+                <dt>Birth Date:</dt>
+                <dd>@Model.BirthDate.ToString("MM/dd/yyyy")</dd>
+                <dt>Position:</dt>
+                <dd>@Model.Position</dd>
+            </dl>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="@Model.Image" alt="@Model.Name" class="img" style="max-width: 150px; max-height: 150px;">
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-controller="Employee" asp-action="Index">Back to List</a>
+    </div>
+</div>
